@@ -1,5 +1,6 @@
 import { Grid } from '@mui/material';
 import React, { FC, ReactElement } from 'react';
+import { CreatTaskForm } from '../createTaskForm/createTaskForm';
 import { Profile } from '../profile/profile';
 
 export const SideBar: FC = (): ReactElement => {
@@ -21,6 +22,7 @@ export const SideBar: FC = (): ReactElement => {
       }}
     >
       <Profile name="Manik" />
+      <CreatTaskForm />
     </Grid>
   );
 };
