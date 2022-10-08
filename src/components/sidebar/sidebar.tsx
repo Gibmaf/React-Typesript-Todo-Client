@@ -20,7 +20,7 @@ export const SideBar: FC = (): ReactElement => {
         alignItems: 'center',
       }}
     >
-      <Profile />
+      <Profile name="Manik" />
     </Grid>
   );
 };
