@@ -4,11 +4,19 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { TextField } from '@mui/material';
+import { IDateField } from './interfaces/IDateField';
+import PropTypes from 'prop-types';
 
-const TaskDateField: FC = (): ReactElement => {
+const TaskDateField: FC<IDateField> = (
+  props,
+): ReactElement => {
+  const {
+    onChange = (date) => console.log(date),
+    disabled = false,
+    value = new Date(),
+  } = props;
   // state
   const [date, setDate] = useState<Date | null>(null);
-  console.log('date: ', date);
 
   return (
     <>
@@ -16,8 +24,9 @@ const TaskDateField: FC = (): ReactElement => {
         <DesktopDatePicker
           label="Task Date"
           inputFormat="dd/MM/yyyy"
-          value={date}
-          onChange={(newValue) => setDate(newValue)}
+          value={value}
+          onChange={onChange}
+          disabled={disabled}
           renderInput={(params) => (
             <TextField {...params} />
           )}
@@ -25,6 +34,12 @@ const TaskDateField: FC = (): ReactElement => {
       </LocalizationProvider>
     </>
   );
+};
+
+TaskDateField.propTypes = {
+  disabled: PropTypes.bool,
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.instanceOf(Date),
 };
 
 export default TaskDateField;
