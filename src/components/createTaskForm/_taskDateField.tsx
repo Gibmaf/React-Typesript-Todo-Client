@@ -16,8 +16,6 @@ const TaskDateField: FC<IDateField> = (
     value = new Date(),
   } = props;
   // state
-  const [date, setDate] = useState<Date | null>(null);
-
   return (
     <>
       <LocalizationProvider dateAdapter={AdapterDateFns}>
