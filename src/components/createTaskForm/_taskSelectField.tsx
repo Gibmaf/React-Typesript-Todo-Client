@@ -5,6 +5,7 @@ import {
   Select,
   SelectChangeEvent,
 } from '@mui/material';
+import PropTypes from 'prop-types';
 import React, { FC, ReactElement } from 'react';
 import { ISelectedField } from './interfaces/ISelectField';
 
@@ -41,5 +42,18 @@ const TaskSelectField: FC<ISelectedField> = (
       </Select>
     </FormControl>
   );
+};
+
+TaskSelectField.propTypes = {
+  onChange: PropTypes.func,
+  label: PropTypes.string,
+  name: PropTypes.string,
+  disabled: PropTypes.bool,
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      value: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired,
+    }).isRequired,
+  ),
 };
 export default TaskSelectField;
