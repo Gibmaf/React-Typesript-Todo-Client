@@ -3,7 +3,7 @@ import { Status } from '../../createTaskForm/enum/Status';
 export type TaskCounterStatusType =
   | Status.todo
   | Status.inProgress
-  | Status.inProgress;
+  | Status.completed;
 
 export interface ITaskCounter {
   count?: number;
