@@ -1,11 +1,25 @@
 import { Box } from '@mui/material';
 import { borderRadius } from '@mui/system';
 import React, { FC, ReactElement } from 'react';
+import { Priority } from '../createTaskForm/enum/Priority';
+import { Status } from '../createTaskForm/enum/Status';
+import { ITask } from './interfaces/ITask';
 import TaskDescription from './_taskDescription';
 import TaskFooter from './_taskFooter';
 import TaskHeader from './_taskHeader';
 
-const Task: FC = (props): ReactElement => {
+const Task: FC<ITask> = (props): ReactElement => {
+  const {
+    date = new Date(),
+    description = 'Lorem ipsum dolor sit amet.',
+    id,
+    onClick = (e) => console.log(e),
+    onStatusChange = (e) => console.log(e),
+    priority = Priority.normal,
+    status = Status.completed,
+    title,
+  } = props;
+
   return (
     <Box
       display="flex"
@@ -22,9 +36,12 @@ const Task: FC = (props): ReactElement => {
         borderColor: 'error.light',
       }}
     >
-      <TaskHeader />
-      <TaskDescription />
-      <TaskFooter />
+      <TaskHeader title={title} date={date} />
+      <TaskDescription description={description} />
+      <TaskFooter
+        onClick={onClick}
+        onStatusChange={onStatusChange}
+      />
     </Box>
   );
 };
