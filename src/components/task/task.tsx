@@ -2,6 +2,7 @@ import { Box } from '@mui/material';
 import { borderRadius } from '@mui/system';
 import React, { FC, ReactElement } from 'react';
 import TaskDescription from './_taskDescription';
+import TaskFooter from './_taskFooter';
 import TaskHeader from './_taskHeader';
 
 const Task: FC = (props): ReactElement => {
@@ -23,6 +24,7 @@ const Task: FC = (props): ReactElement => {
     >
       <TaskHeader />
       <TaskDescription />
+      <TaskFooter />
     </Box>
   );
 };
