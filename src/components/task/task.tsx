@@ -1,6 +1,7 @@
 import { Box } from '@mui/material';
 import { borderRadius } from '@mui/system';
 import React, { FC, ReactElement } from 'react';
+import TaskHeader from './_taskHeader';
 
 const Task: FC = (props): ReactElement => {
   return (
@@ -19,7 +20,7 @@ const Task: FC = (props): ReactElement => {
         borderColor: 'error.light',
       }}
     >
-      Task
+      <TaskHeader />
     </Box>
   );
 };
