@@ -1,8 +1,9 @@
 import { Box } from '@mui/material';
-import { borderRadius } from '@mui/system';
+import PropTypes from 'prop-types';
 import React, { FC, ReactElement } from 'react';
 import { Priority } from '../createTaskForm/enum/Priority';
 import { Status } from '../createTaskForm/enum/Status';
+import { renderPriorityBorderColor } from './helpers/renderPriorityBorderColor';
 import { ITask } from './interfaces/ITask';
 import TaskDescription from './_taskDescription';
 import TaskFooter from './_taskFooter';
@@ -33,7 +34,7 @@ const Task: FC<ITask> = (props): ReactElement => {
         backgroundColor: 'background.paper',
         borderRadius: '8px',
         border: '1px solid',
-        borderColor: 'error.light',
+        borderColor: renderPriorityBorderColor(priority),
       }}
     >
       <TaskHeader title={title} date={date} />
@@ -44,6 +45,16 @@ const Task: FC<ITask> = (props): ReactElement => {
       />
     </Box>
   );
+};
+
+Task.propTypes = {
+  title: PropTypes.string,
+  date: PropTypes.instanceOf(Date),
+  description: PropTypes.string,
+  onStatusChange: PropTypes.func,
+  onClick: PropTypes.func,
+  priority: PropTypes.string,
+  status: PropTypes.string,
 };
 
 export default Task;
