@@ -1,14 +1,24 @@
 import { CssBaseline, ThemeProvider } from '@mui/material';
+import {
+  QueryClient,
+  QueryClientProvider,
+} from 'react-query';
 import React, { FC, ReactElement } from 'react';
+import { ReactQueryDevtools } from 'react-query/devtools';
 import { Dashboard } from './pages/dashboard/dashboard';
 import { customTheme } from './theme/customTheme';
 
+//Create a client
+const queryClient = new QueryClient();
 const App: FC = (): ReactElement => {
   return (
-    <ThemeProvider theme={customTheme}>
-      <CssBaseline />
-      <Dashboard />
-    </ThemeProvider>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider theme={customTheme}>
+        <CssBaseline />
+        <Dashboard />
+      </ThemeProvider>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   );
 };
 
