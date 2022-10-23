@@ -1,10 +1,21 @@
 import { Box, Grid } from '@mui/material';
 import { format } from 'date-fns';
 import React, { FC, ReactElement } from 'react';
+import { useQuery } from 'react-query';
+import { sendApiRequest } from '../../helpers/sendApiRequest';
 import Task from '../task/task';
 import TaskCounter from '../taskCounter/taskCounter';
 
 export const TaskArea: FC = (): ReactElement => {
+  const { error, isLoading, data, refetch } = useQuery(
+    'tasks',
+    async () => {
+      return await sendApiRequest(
+        'http://localhost:3200/tasks',
+        'GET',
+      );
+    },
+  );
   return (
     <Grid item md={8} px={4}>
       <Box mb={8} px={4}>
