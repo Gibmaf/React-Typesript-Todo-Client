@@ -40,6 +40,8 @@ const Task: FC<ITask> = (props): ReactElement => {
       <TaskHeader title={title} date={date} />
       <TaskDescription description={description} />
       <TaskFooter
+        id={id}
+        status={status}
         onClick={onClick}
         onStatusChange={onStatusChange}
       />
