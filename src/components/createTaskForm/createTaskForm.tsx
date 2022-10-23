@@ -10,6 +10,7 @@ import {
 import React, { FC, ReactElement, useState } from 'react';
 import { useMutation } from 'react-query';
 import { sendApiRequest } from '../../helpers/sendApiRequest';
+import { ICreateTask } from '../taskArea/interfaces/ICreateTask';
 import { Priority } from './enum/Priority';
 import { Status } from './enum/Status';
 import TaskDateField from './_taskDateField';
@@ -31,12 +32,13 @@ export const CreatTaskForm: FC = (props): ReactElement => {
   );
 
   //Create task mutation
-  const createTaskMutation = useMutation((data) =>
-    sendApiRequest(
-      'http://localhost:3200/task',
-      'POST',
-      data,
-    ),
+  const createTaskMutation = useMutation(
+    (data: ICreateTask) =>
+      sendApiRequest(
+        'http://localhost:3200/task',
+        'POST',
+        data,
+      ),
   );
 
   return (
