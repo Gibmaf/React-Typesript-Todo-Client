@@ -1,5 +1,5 @@
 import { Box, Stack, Typography } from '@mui/material';
-import React, { FC, ReactElement } from 'react';
+import React, { FC, ReactElement, useState } from 'react';
 import { Priority } from './enum/Priority';
 import { Status } from './enum/Status';
 import TaskDateField from './_taskDateField';
@@ -8,6 +8,18 @@ import TaskSelectField from './_taskSelectField';
 import TaskTitleField from './_taskTitleField';
 
 export const CreatTaskForm: FC = (props): ReactElement => {
+  const [title, setTitle] = useState<string | undefined>(
+    undefined,
+  );
+  const [description, setDescription] = useState<
+    string | undefined
+  >(undefined);
+  const [date, setDate] = useState<Date | null>(new Date());
+  const [status, setStatus] = useState<string>(Status.todo);
+  const [priority, setPriority] = useState<string>(
+    Priority.normal,
+  );
+
   return (
     <Box
       display="flex"
