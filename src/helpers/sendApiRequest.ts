@@ -16,6 +16,9 @@ function returnCorrectRequest(
   return {
     method: method,
     body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json',
+    },
   };
 }
 export async function sendApiRequest<T>(
