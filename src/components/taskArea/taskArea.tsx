@@ -5,12 +5,13 @@ import { useQuery } from 'react-query';
 import { sendApiRequest } from '../../helpers/sendApiRequest';
 import Task from '../task/task';
 import TaskCounter from '../taskCounter/taskCounter';
+import { ITaskApi } from './interfaces/ITaskApi';
 
 export const TaskArea: FC = (): ReactElement => {
   const { error, isLoading, data, refetch } = useQuery(
     'tasks',
     async () => {
-      return await sendApiRequest(
+      return await sendApiRequest<ITaskApi[]>(
         'http://localhost:3200/tasks',
         'GET',
       );
