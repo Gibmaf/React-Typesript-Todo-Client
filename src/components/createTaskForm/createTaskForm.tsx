@@ -8,6 +8,8 @@ import {
   Typography,
 } from '@mui/material';
 import React, { FC, ReactElement, useState } from 'react';
+import { useMutation } from 'react-query';
+import { sendApiRequest } from '../../helpers/sendApiRequest';
 import { Priority } from './enum/Priority';
 import { Status } from './enum/Status';
 import TaskDateField from './_taskDateField';
@@ -26,6 +28,15 @@ export const CreatTaskForm: FC = (props): ReactElement => {
   const [status, setStatus] = useState<string>(Status.todo);
   const [priority, setPriority] = useState<string>(
     Priority.normal,
+  );
+
+  //Create task mutation
+  const createTaskMutation = useMutation((data) =>
+    sendApiRequest(
+      'http://localhost:3200/task',
+      'POST',
+      data,
+    ),
   );
 
   return (
