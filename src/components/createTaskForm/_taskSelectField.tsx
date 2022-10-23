@@ -30,6 +30,7 @@ const TaskSelectField: FC<ISelectedField> = (
         label={label}
         name={name}
         disabled={disabled}
+        onChange={onChange}
       >
         {items.map((item, index) => (
           <MenuItem
