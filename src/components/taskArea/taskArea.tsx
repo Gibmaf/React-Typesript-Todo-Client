@@ -1,4 +1,9 @@
-import { Alert, Box, Grid } from '@mui/material';
+import {
+  Alert,
+  Box,
+  Grid,
+  LinearProgress,
+} from '@mui/material';
 import { format } from 'date-fns';
 import React, { FC, ReactElement } from 'react';
 import { useQuery } from 'react-query';
@@ -17,6 +22,7 @@ export const TaskArea: FC = (): ReactElement => {
       );
     },
   );
+
   return (
     <Grid item md={8} px={4}>
       <Box mb={8} px={4}>
@@ -51,23 +57,41 @@ export const TaskArea: FC = (): ReactElement => {
           xs={10}
           md={8}
         >
-          {error && (
-            <Alert severity="error">
-              There was an error fetching your tasks
-            </Alert>
-          )}
-
-          {!error &&
-            Array.isArray(data) &&
-            data.length === 0 && (
-              <Alert severity="warning">
-                You do not have any tasks creatd yet. Start
-                by creating some tasks
+          <>
+            {error && (
+              <Alert severity="error">
+                There was an error fetching your tasks
               </Alert>
             )}
-          <Task id="123" />
-          <Task id="123" />
-          <Task id="123" />
+
+            {!error &&
+              Array.isArray(data) &&
+              data.length === 0 && (
+                <Alert severity="warning">
+                  You do not have any tasks creatd yet.
+                  Start by creating some tasks
+                </Alert>
+              )}
+            {isLoading ? (
+              <LinearProgress />
+            ) : (
+              Array.isArray(data) &&
+              data.length > 0 &&
+              data.map((each, index) => {
+                return (
+                  <Task
+                    id={each.id}
+                    key={index + each.priority}
+                    title={each.title}
+                    date={new Date(each.date)}
+                    description={each.description}
+                    priority={each.priority}
+                    status={each.status}
+                  />
+                );
+              })
+            )}
+          </>
         </Grid>
       </Grid>
     </Grid>
