@@ -1,4 +1,4 @@
-import { Box, Grid } from '@mui/material';
+import { Alert, Box, Grid } from '@mui/material';
 import { format } from 'date-fns';
 import React, { FC, ReactElement } from 'react';
 import { useQuery } from 'react-query';
@@ -51,9 +51,23 @@ export const TaskArea: FC = (): ReactElement => {
           xs={10}
           md={8}
         >
-          <Task />
-          <Task />
-          <Task />
+          {error && (
+            <Alert severity="error">
+              There was an error fetching your tasks
+            </Alert>
+          )}
+
+          {!error &&
+            Array.isArray(data) &&
+            data.length === 0 && (
+              <Alert severity="warning">
+                You do not have any tasks creatd yet. Start
+                by creating some tasks
+              </Alert>
+            )}
+          <Task id="123" />
+          <Task id="123" />
+          <Task id="123" />
         </Grid>
       </Grid>
     </Grid>
