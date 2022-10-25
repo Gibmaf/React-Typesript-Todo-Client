@@ -6,6 +6,7 @@ import {
 } from '@mui/material';
 import PropTypes from 'prop-types';
 import React, { FC, ReactElement } from 'react';
+import { Status } from '../createTaskForm/enum/Status';
 import { ITaskFooter } from './interfaces/ITaskFooter';
 
 const TaskFooter: FC<ITaskFooter> = (
@@ -31,6 +32,7 @@ const TaskFooter: FC<ITaskFooter> = (
           <Switch
             onChange={(e) => onStatusChange(e)}
             color="warning"
+            defaultChecked={status === Status.inProgress}
           />
         }
       />

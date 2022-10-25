@@ -8,6 +8,7 @@ import { format } from 'date-fns';
 import React, { FC, ReactElement } from 'react';
 import { useQuery } from 'react-query';
 import { sendApiRequest } from '../../helpers/sendApiRequest';
+import { Status } from '../createTaskForm/enum/Status';
 import Task from '../task/task';
 import TaskCounter from '../taskCounter/taskCounter';
 import { ITaskApi } from './interfaces/ITaskApi';
@@ -78,7 +79,8 @@ export const TaskArea: FC = (): ReactElement => {
               Array.isArray(data) &&
               data.length > 0 &&
               data.map((each, index) => {
-                return (
+                return each.status === Status.todo ||
+                  each.status === Status.inProgress ? (
                   <Task
                     id={each.id}
                     key={index + each.priority}
@@ -88,6 +90,8 @@ export const TaskArea: FC = (): ReactElement => {
                     priority={each.priority}
                     status={each.status}
                   />
+                ) : (
+                  false
                 );
               })
             )}
