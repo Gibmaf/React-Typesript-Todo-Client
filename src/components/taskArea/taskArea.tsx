@@ -12,6 +12,7 @@ import { Status } from '../createTaskForm/enum/Status';
 import { IUpdateTask } from '../task/interfaces/IUpdateTask';
 import Task from '../task/task';
 import TaskCounter from '../taskCounter/taskCounter';
+import { countTasks } from './helpers/countTask';
 import { ITaskApi } from './interfaces/ITaskApi';
 
 export const TaskArea: FC = (): ReactElement => {
@@ -82,9 +83,30 @@ export const TaskArea: FC = (): ReactElement => {
           xs={12}
           mb={8}
         >
-          <TaskCounter />
-          <TaskCounter />
-          <TaskCounter />
+          <TaskCounter
+            status={Status.todo}
+            count={
+              data
+                ? countTasks(data, Status.todo)
+                : undefined
+            }
+          />
+          <TaskCounter
+            status={Status.inProgress}
+            count={
+              data
+                ? countTasks(data, Status.inProgress)
+                : undefined
+            }
+          />
+          <TaskCounter
+            status={Status.completed}
+            count={
+              data
+                ? countTasks(data, Status.completed)
+                : undefined
+            }
+          />
         </Grid>
         <Grid
           item

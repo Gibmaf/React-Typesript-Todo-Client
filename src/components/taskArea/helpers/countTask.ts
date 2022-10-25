@@ -1,8 +1,8 @@
-import { ITask } from '../../task/interfaces/ITask';
+import { ITaskApi } from './../interfaces/ITaskApi';
 import { TaskCounterStatusType } from '../../taskCounter/interfaces/ITaskCounter';
 
 export const countTasks = (
-  tasks: ITask,
+  tasks: ITaskApi[],
   status: TaskCounterStatusType,
 ): number => {
   if (!Array.isArray(tasks)) {
