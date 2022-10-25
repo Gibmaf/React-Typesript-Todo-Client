@@ -6,9 +6,10 @@ import {
 } from '@mui/material';
 import { format } from 'date-fns';
 import React, { FC, ReactElement } from 'react';
-import { useQuery } from 'react-query';
+import { useMutation, useQuery } from 'react-query';
 import { sendApiRequest } from '../../helpers/sendApiRequest';
 import { Status } from '../createTaskForm/enum/Status';
+import { IUpdateTask } from '../task/interfaces/IUpdateTask';
 import Task from '../task/task';
 import TaskCounter from '../taskCounter/taskCounter';
 import { ITaskApi } from './interfaces/ITaskApi';
@@ -22,6 +23,16 @@ export const TaskArea: FC = (): ReactElement => {
         'GET',
       );
     },
+  );
+
+  //update task mutation
+  const updateTaskMutation = useMutation(
+    (data: IUpdateTask) =>
+      sendApiRequest(
+        'http://localhost:3200/tasks',
+        'PUT',
+        data,
+      ),
   );
 
   return (
